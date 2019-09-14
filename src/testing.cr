@@ -2,31 +2,31 @@
 module Testing
   VERSION = "0.1.0"
 
-# Setup variables for FizzBuzz
-def div_fivteen(n)
+ # Setup variables for FizzBuzz
+ def div_fivteen(n)
   n % 15 == 0
-end
-def div_fiv(n)
+ end
+ def div_fiv(n)
   n % 5 == 0
-end
-def div_three(n)
+ end
+ def div_three(n)
   n % 3 == 0
-end
+ end
 
 # First pass at FizzBuzz
-(1..100).each do |i|
- fb = ""
-  if div_fivteen i
+ (1..100).each do |i|
+  fb = ""
+   if div_fivteen i
     fb = "FizBuz"
-  elsif div_fiv i
+   elsif div_fiv i
     fb = "Fiz"
-  elsif div_three i
+   elsif div_three i
     fb = "Buzz"
-  else
-    fb = num
-  end
-  puts answer
-end
+   else
+    fb = i
+   end
+   puts fb
+ end
 
 # Alternatively you can refactor by having the if run inside the variable
 (1..100).each do |i|
