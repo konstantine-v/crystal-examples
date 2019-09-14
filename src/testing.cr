@@ -1,12 +1,6 @@
-
-# Hello World
-a = true
-while a = true
-  a = "Hello World"
-  break
-end
-puts a
-# Using a while loop so that way there's some sort of validation going on
+# TODO: Write documentation for `Testing`
+module Testing
+  VERSION = "0.1.0"
 
 # Setup variables for FizzBuzz
 def div_fivteen(n)
@@ -57,3 +51,10 @@ end
   i;
  puts fb
 end
+
+end
+require "./testing/*"
+
+
+
+

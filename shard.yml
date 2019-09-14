@@ -1,0 +1,13 @@
+name: testing
+version: 0.1.0
+
+authors:
+  - Konstantine <konstantinev@protonmail.com>
+
+targets:
+  testing:
+    main: src/testing.cr
+
+crystal: 0.30.1
+
+license: MIT
