@@ -1,15 +1,14 @@
 
 # Hello World
 a = true
-
 while a = true
   a = "Hello World"
   break
 end
-
 puts a
+# Using a while loop so that way there's some sort of validation going on
 
-
+# Setup variables for FizzBuzz
 def div_fivteen(n)
   n % 15 == 0
 end
@@ -20,16 +19,17 @@ def div_three(n)
   n % 3 == 0
 end
 
+# First pass at FizzBuzz
 (1..100).each do |i|
- answer = ""
+ fb = ""
   if div_fivteen i
-    answer="FizBuz"
+    fb = "FizBuz"
   elsif div_fiv i
-    answer="Fiz"
+    fb = "Fiz"
   elsif div_three i
-    answer="Buzz"
+    fb = "Buzz"
   else
-    answer = num
+    fb = num
   end
   puts answer
 end
@@ -48,12 +48,12 @@ end
   puts fb
 end
 
-# Now with Ternary Operators
+# Now with Ternary Operators, now that's minimalist
 (1..100).each do |i|
  fb =
   div_fivteen i ? "fizzbuzz" :
   div_fiv i ? "fizz" :
   div_three i ? "buzz" :
-  i
+  i;
  puts fb
 end
