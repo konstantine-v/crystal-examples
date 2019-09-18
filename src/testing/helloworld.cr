@@ -7,5 +7,5 @@ class Testing::HelloWorld
  puts a
 end
 
-# Using a while loop so that way there's some sort of validation going on
+# Using a while loop so that way there's some sort of validation going on and it's not just a plain hello world
 
