@@ -1,6 +1,6 @@
-class Testing::Fizzbuzz_3
+class Testing::Fizzbuzz_4
 
-	# Another version I've seen for crystal
+	# Another version I've seen for crystal, but this one I didn't do myself, it's just for reference
 	1.upto(100) do |v|
 		p fizz_buzz(v)
 	end

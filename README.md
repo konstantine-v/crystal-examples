@@ -1,34 +1,17 @@
-# testing
+# Info
 
-TODO: Write a description here
+This is just a repo for me to practice Crystal Lang. I've been practicing a bit of Ruby and decided to take a look into crystal and see performance as well as compatibility for a future project.
 
-## Installation
+I also want to see how possible it is to take exsisting code (and subsequently projects) in Ruby and make it work in Crystal while being a cross-platform binary for MacOS and Linux. This would help me with some of my work in regards to some projects I'm currently on.
 
-TODO: Write installation instructions here
+## Installation/Development
+
+Run `shards install -v` and make sure the deps install correctly.
+
+Make changes to modules/classes in the `src/testing` directory.
 
 ## Usage
 
-TODO: Write usage instructions here
+Run the crystal files by using `crystal src/testing/<your-file>.cr`, read crystal docs in regards to compiling files as binaries and running them.
 
-## Development
 
-TODO: Write development instructions here
-
-## Contributing
-
-1. Fork it (<https://github.com/your-github-user/testing/fork>)
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
-
-## Contributors
-
-- [Konstantine](https://github.com/your-github-user) - creator and maintainer
-# Crystal Lang projects
-
-This is just a repo for me to practice Crystal Lang. I've been practicing a bit of Java and decided to take a look into crystal and see performance as well as compatibility for a future project.
-
-I want to see what crystal can do first-hand and build a couple of things within this test project just to get my feet wet before actually going in and creating an app.
-
-I've added my notes from the notes repo into this one for the sake of convienience.
