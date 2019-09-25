@@ -8,6 +8,14 @@ targets:
   testing:
     main: src/testing.cr
 
+dependencies:
+  onyx:
+    github: onyxframework/onyx
+    version: ~> 0.6.0
+  onyx-http:
+    github: onyxframework/http
+    version: ~> 0.9.0
+
 crystal: 0.30.1
 
 license: MIT
