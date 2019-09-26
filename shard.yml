@@ -15,6 +15,9 @@ dependencies:
   onyx-http:
     github: onyxframework/http
     version: ~> 0.9.0
+  stumpy_png:
+    github: stumpycr/stumpy_png
+    version: "~> 4.5"
 
 crystal: 0.30.1
 

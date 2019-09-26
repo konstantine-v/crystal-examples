@@ -32,6 +32,14 @@ shards:
     github: luislavena/radix
     version: 0.3.9
 
+  stumpy_core:
+    github: stumpycr/stumpy_core
+    version: 1.9.1
+
+  stumpy_png:
+    github: stumpycr/stumpy_png
+    version: 4.5.2
+
   time_format:
     github: vladfaust/time_format.cr
     version: 0.1.1
