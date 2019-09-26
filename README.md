@@ -14,4 +14,7 @@ Make changes to modules/classes in the `src/testing` directory.
 
 Run the crystal files by using `crystal src/testing/<your-file>.cr`, read crystal docs in regards to compiling files as binaries and running them.
 
+## Notes/Todos
 
+- Having some trouble getting the fractal to render using the flags `-w=400 -h=320 --color=multi mandelbrot --scale=2 --def=200` on the binary. Going to read more documentation regarding syntax to see what errors I may have made.
+- Working on making a simple, viable onyx server to use with exsisting projects
