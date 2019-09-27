@@ -16,5 +16,5 @@ Run the crystal files by using `crystal src/testing/<your-file>.cr`, read crysta
 
 ## Notes/Todos
 
-- Having some trouble getting the fractal to render using the flags `-w=400 -h=320 --color=multi mandelbrot --scale=2 --def=200` on the binary. Going to read more documentation regarding syntax to see what errors I may have made.
+- Having some trouble getting the fractal to render using the flags
 - Working on making a simple, viable onyx server to use with exsisting projects

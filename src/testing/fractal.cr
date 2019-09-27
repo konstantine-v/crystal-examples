@@ -1,9 +1,9 @@
 require "stumpy_png"
+require "option_parser"
 
 module Fractals
 
-
-  def drag(pos, pos_min, pos_max, out_min, out_max)
+  private def drag(pos, pos_min, pos_max, out_min, out_max)
     return (
       (pos - pos_min) * (out_max - out_min) /
       (pos_max - pos_min) + out_min
@@ -13,11 +13,11 @@ module Fractals
   module Fractals
     class Mandelbrot
       property :colouring
-      def initialize(image)
+      private def initialize(image)
         @width, @height = image.width, image.height
         @image = image
       end
-      def calculate(a, b, c_arr)
+      private def calculate(a, b, c_arr)
         ca, cb = c_arr
         left = a * a - b * b
         right = 2 * a * b
@@ -25,7 +25,7 @@ module Fractals
         b = right + cb
         return [a, b]
       end
-      def draw(definition=255, scale=2.0, offset=[0,0])
+      private def draw(definition=255, scale=2.0, offset=[0,0])
         scaleWidth  = scale
         scaleHeight = scale.to_f * (@height.to_f // @width.to_f)
         definition = definition.to_f
@@ -62,7 +62,7 @@ module Fractals
     class Julia < Mandelbrot
       property :real
       property :imaginary
-      def calculate(a, b, c_arr)
+      private def calculate(a, b, c_arr)
         left = a * a - b * b
         right = 2 * a * b
         a = left  + @real      # z^2 + c
@@ -73,3 +73,82 @@ module Fractals
   end
 
 end
+
+args = Hash[ARGV.join(' ').scan(/--?([^=\s]+)(?:=(\S+))?/)]
+
+allowed_fractals = ["mandelbrot", "julia"]
+fractal_type = String.new
+
+o = String.new
+ARGV.each do |arg|
+  allowed_fractals.each do |option|
+    fractal_type = arg.downcase if arg.downcase == option
+  end
+
+  o = arg if arg[arg.length - 4, 4].downcase == ".png"
+end
+
+o = args['o'] if args.key? "o"
+if o.include? "~"
+  o.delete! "~"
+  o = "#{File.expand_path('~')}/#{o}"
+end
+
+
+if fractal_type.empty?
+  puts "Error: Please provide a fractal type.\nType `fractal --help` for help."
+  exit 1
+end
+
+width = height = 0
+width  = args['w'].to_i if args.key? 'w' # -w=2000
+height = args['h'].to_i if args.key? 'h' # -h=1500
+
+if width <= 0 || height <= 0
+  puts "Warning, width and/or height not provided.\nSetting to default: 300x300"
+  width = height = 300
+end
+
+ca = cb = nil
+if args.key? "complex"
+  complex = args["complex"]
+  ca, cb = complex.split(/(?=[+\-])/)
+  ca = ca.to_f
+  cb.delete! "i"
+  cb = cb.to_f
+end
+
+if fractal_type == "julia" && (ca.nil? || cb.nil?)
+  puts "Error: fractal type: '#{fractal_type}' requires complex coordinate,\n in form of '±c₁±c₂i', for example: -0.416+0.8i"
+  exit 1
+end
+
+png = ChunkyPNG::Image.new width, height
+
+case fractal_type
+when "mandelbrot"
+  fractal = Fractals::Mandelbrot.new png
+when "julia"
+  fractal = Fractals::Julia.new png
+  fractal.real = ca
+  fractal.imaginary = cb
+else
+  fractal = Fractals::Mandelbrot.new png
+end
+
+
+fractal.colouring = args["color"] if args.key? "color" # --color=mono
+fractal.colouring = args["mode"] if args.key? "mode" # --mode=mono
+
+definition, scale = 255, 2.0
+definition = args["def"].to_i if args.key? "def" # --def=100
+scale = args["scale"].to_f if args.key? "scale"  # --scale=1.5
+offset = [0, 0]
+offset = args["offset"].split(',').map(&:to_f) if args.key? "offset"
+
+unless o.empty?
+  fractal.draw(definition, scale, offset).save(o)
+  exit 0
+end
+
+fractal.draw(definition, scale, offset).save("#{fractal_type}-fractal.png")
