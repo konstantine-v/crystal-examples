@@ -10,90 +10,76 @@ module Fractals
     )
   end
 
-  module Fractals
-    class Mandelbrot
-      property :colouring
-      private def initialize(image)
-        @width, @height = image.width, image.height
-        @image = image
-      end
-      private def calculate(a, b, c_arr)
-        ca, cb = c_arr
-        left = a * a - b * b
-        right = 2 * a * b
-        a = left  + ca
-        b = right + cb
-        return [a, b]
-      end
-      private def draw(definition=255, scale=2.0, offset=[0,0])
-        scaleWidth  = scale
-        scaleHeight = scale.to_f * (@height.to_f // @width.to_f)
-        definition = definition.to_f
-        (0..@width - 1).each do |x|
-          (0..@height - 1).each do |y|
-            a = ca = drag x, 0, @width,  -scaleWidth  + offset[0], scaleWidth  + offset[0]
-            b = cb = drag y, 0, @height, -scaleHeight - offset[1], scaleHeight - offset[1]
-            snap = 0
-            while snap < definition
-              a, b = calculate a, b, [ca, cb]
-              if a * a + b * b > 16
-                break
-              end
-              snap += 1
+  class Mandelbrot
+    property :colouring
+    private def initialize(image)
+      @width, @height = image.width, image.height
+      @image = image
+    end
+    private def calculate(a, b, c_arr)
+      ca, cb = c_arr
+      left = a * a - b * b
+      right = 2 * a * b
+      a = left  + ca
+      b = right + cb
+      return [a, b]
+    end
+    private def draw(definition=255, scale=2.0, offset=[0,0])
+      scaleWidth  = scale
+      scaleHeight = scale.to_f * (@height.to_f // @width.to_f)
+      definition = definition.to_f
+      (0..@width - 1).each do |x|
+        (0..@height - 1).each do |y|
+          a = ca = drag x, 0, @width,  -scaleWidth  + offset[0], scaleWidth  + offset[0]
+          b = cb = drag y, 0, @height, -scaleHeight - offset[1], scaleHeight - offset[1]
+          snap = 0
+          while snap < definition
+            a, b = calculate a, b, [ca, cb]
+            if a * a + b * b > 16
+              break
             end
-            case @colouring
-            when "multichromatic", "multi", "rainbow"
-              brightness = 1
-              brightness = 0 if snap == definition
-              hue = drag snap, 0, definition, 0, 1
-              hue = drag (Math.sqrt hue), 0, 1, 0, 360
-              @image[x, y] = StumpyPNG::Color.from_hsv hue, 1, brightness
-            else
-              shade = drag snap, 0, definition, 0, 1
-              shade = drag (Math.sqrt shade), 0, 1, 0, 255
-              r, g, b = [shade.round.to_i] * 3
-              @image[x, y] = StumpyPNG::Color.rgb r, g, b
-            end
+            snap += 1
+          end
+          case @colouring
+          when "multichromatic", "multi", "rainbow"
+            brightness = 1
+            brightness = 0 if snap == definition
+            hue = drag snap, 0, definition, 0, 1
+            hue = drag (Math.sqrt hue), 0, 1, 0, 360
+            @image[x, y] = StumpyPNG::Color.from_hsv hue, 1, brightness
+          else
+            shade = drag snap, 0, definition, 0, 1
+            shade = drag (Math.sqrt shade), 0, 1, 0, 255
+            r, g, b = [shade.round.to_i] * 3
+            @image[x, y] = StumpyPNG::Color.rgb r, g, b
           end
         end
-        return @image
       end
+      return @image
     end
-    class Julia < Mandelbrot
-      property :real
-      property :imaginary
-      private def calculate(a, b, c_arr)
-        left = a * a - b * b
-        right = 2 * a * b
-        a = left  + @real      # z^2 + c
-        b = right + @imaginary
-        return [a, b]
-      end
+  end
+  class Julia < Mandelbrot
+    property :real
+    property :imaginary
+    private def calculate(a, b, c_arr)
+      left = a * a - b * b
+      right = 2 * a * b
+      a = left  + @real      # z^2 + c
+      b = right + @imaginary
+      return [a, b]
     end
   end
 
 end
 
-args = Hash[ARGV.join(' ').scan(/--?([^=\s]+)(?:=(\S+))?/)]
+# Hardcode the the parameters to benchmark the application.
+# Remember, to add Optarg to add crystal cli args: (https://github.com/mosop/optarg)
 
-allowed_fractals = ["mandelbrot", "julia"]
+allowed_fractals = "mandelbrot"
 fractal_type = String.new
+fractal_type = "mandelbrot"
 
-o = String.new
-ARGV.each do |arg|
-  allowed_fractals.each do |option|
-    fractal_type = arg.downcase if arg.downcase == option
-  end
-
-  o = arg if arg[arg.length - 4, 4].downcase == ".png"
-end
-
-o = args['o'] if args.key? "o"
-if o.include? "~"
-  o.delete! "~"
-  o = "#{File.expand_path('~')}/#{o}"
-end
-
+o = "mandelbrot benchmark.png"
 
 if fractal_type.empty?
   puts "Error: Please provide a fractal type.\nType `fractal --help` for help."
@@ -101,8 +87,8 @@ if fractal_type.empty?
 end
 
 width = height = 0
-width  = args['w'].to_i if args.key? 'w' # -w=2000
-height = args['h'].to_i if args.key? 'h' # -h=1500
+width  = 1920
+height = 1080
 
 if width <= 0 || height <= 0
   puts "Warning, width and/or height not provided.\nSetting to default: 300x300"
