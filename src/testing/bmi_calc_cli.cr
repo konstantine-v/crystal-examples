@@ -9,7 +9,6 @@ require "admiral"
   # set_unit_of_measure = possible_units.first()
 
 class BmiValues < Admiral::Command
-  define_flag planet
   define_flag name : String, long: name
   define_flag units : String, default: "Imperial", long: units
   define_flag height : Float64, default: 5.11, long: height
