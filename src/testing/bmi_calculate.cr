@@ -7,22 +7,26 @@ class BmiValues
   # Set Defaults
   set_height = 5.11       # Feet
   set_weight = 180        # Pounds
-  set_name = "Bob"
+  # set_name = nil
   set_gender = possible_genders.first()
   set_unit_of_measure = possible_units.first()
 
   puts "Lets Calculate your BMI"
 
   print "Enter your name:"
-  set_name = gets.to_s
-  if set_name
+  # set_name = gets.try(&.to_s) || nil
+  set_name = gets.to_s.chomp
+  
+  # if (set_name != "" || set_name != nil || set_name != " ")
+  if set_name.not_nil!
+    puts "Hello, #{set_name}"
   else
     puts "Nothing put, setting name to Bob"
     set_name = "Bob"
   end
 
   print "Are you using Imperial or Metric?"
-  set_unit_of_measure = gets.to_s
+  set_unit_of_measure = gets.not_nil!.to_s
   if set_unit_of_measure
   else
     puts "Nothing put or inccorrect imput, Defaulting to Imperial"
@@ -64,11 +68,6 @@ class BmiValues
   end
 
   # Print Outputs - Include Chart with output
-  puts "Below 18.5 =	Underweight"
-  puts "18.5 - 24.9 =	Normal"
-  puts "25 - 29.9 =	Overweight"
-  puts "30.0 + =	Obese"
-  puts "======================"
   puts "Hello #{set_name}"
   puts "Your BMI is: #{total_BMI}"
   puts "You're considered: #{bmi_string}"
