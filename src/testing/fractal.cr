@@ -114,90 +114,10 @@ class Fractal < Admiral::Command
     allowed_fractals = ["mandelbrot", "julia"]
     # fractal_type = String.new
   
-    if (uh_oh != stinky)
-      def haha_funny
-    end
+    # Define What to do with args and flags given handled by Admiral
 
   end
 
-end
-
-
-
-
-# Basically rewrite all this stinky mess by putting the data into whatever end function, admiral handles the rest. 
-# Leave here for now as references as to what needs to be done, but other than validation you shouldn't need most of this since most of it just let Ruby know what to do with the 'args' and we already handled that with Admiral.
-
-o = String.new
-ARGV.each do |arg|
-  allowed_fractals.each do |option|
-    fractal_type = arg.downcase if arg.downcase == option
-  end
-
-  o = arg if arg[arg.length - 4, 4].downcase == '.png'
-end
-
-o = args['o'] if args.key? 'o'
-if o.include? '~'
-  o.delete! '~'
-  o = "#{File.expand_path('~')}/#{o}"
-end
-
-
-if fractal_type.empty?
-  puts "Error: Please provide a fractal type.\nType `fractal --help` for help."
-  exit 1
-end
-
-width = height = 0
-width  = args['w'].to_i if args.key? 'w' # -w=2000
-height = args['h'].to_i if args.key? 'h' # -h=1500
-
-if width <= 0 || height <= 0
-  puts "Warning, width and/or height not provided.\nSetting to default: 300x300"
-  width = height = 300
-end
-
-ca = cb = nil
-if args.key? 'complex'
-  complex = args['complex']
-  ca, cb = complex.split(/(?=[+\-])/)
-  ca = ca.to_f
-  cb.delete! "i"
-  cb = cb.to_f
-end
-
-if fractal_type == 'julia' && (ca.nil? || cb.nil?)
-  puts "Error: fractal type: '#{fractal_type}' requires complex coordinate,\n in form of '±c₁±c₂i', for example: -0.416+0.8i"
-  exit 1
-end
-
-png = ChunkyPNG::Image.new width, height
-
-case fractal_type
-when 'mandelbrot'
-  fractal = Fractals::Mandelbrot.new png
-when 'julia'
-  fractal = Fractals::Julia.new png
-  fractal.real = ca
-  fractal.imaginary = cb
-else
-  fractal = Fractals::Mandelbrot.new png
-end
-
-
-fractal.colouring = args['color'] if args.key? 'color' # --color=mono
-fractal.colouring = args['mode'] if args.key? 'mode' # --mode=mono
-
-definition, scale = 255, 2.0
-definition = args['def'].to_i if args.key? 'def' # --def=100
-scale = args['scale'].to_f if args.key? 'scale'  # --scale=1.5
-offset = [0, 0]
-offset = args['offset'].split(',').map(&:to_f) if args.key? 'offset'
-
-unless o.empty?
-  fractal.draw(definition, scale, offset).save(o)
-  exit 0
 end
 
 # This will be changes to use the run variable set by Admiral

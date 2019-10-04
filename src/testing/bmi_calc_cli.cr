@@ -1,13 +1,5 @@
 require "admiral"
 
-  # # Variables
-  # possible_genders = ["Male", "Female"]
-  # possible_units = ["Imperial", "Metric"]
-  # set_height = 5.11
-  # set_weight = 180
-  # set_gender = possible_genders.first()
-  # set_unit_of_measure = possible_units.first()
-
 class BmiValues < Admiral::Command
   define_flag name : String, long: name
   define_flag units : String, default: "Imperial", long: units
