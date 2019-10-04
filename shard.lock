@@ -1,5 +1,9 @@
 version: 1.0
 shards:
+  admiral:
+    github: jwaldrip/admiral.cr
+    version: 1.8.0
+
   callbacks:
     github: vladfaust/callbacks.cr
     version: 0.2.0
