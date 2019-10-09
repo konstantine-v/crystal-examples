@@ -16,5 +16,7 @@ Run the crystal files by using `crystal src/testing/<your-file>.cr`, read crysta
 
 ## Notes/Todos
 
-- Having some trouble getting the fractal to render using the flags
 - Working on making a simple, viable onyx server to use with exsisting projects
+- Moved Fractal and BMI-CLI to their own main repos
+
+
