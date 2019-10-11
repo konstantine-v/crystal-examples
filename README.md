@@ -16,5 +16,6 @@ Run the crystal files by using `crystal src/testing/<your-file>.cr`, read crysta
 
 ## Notes/Todos
 
+- Included quote generator using SQLite3 db. After I finish the initial design, I'll break out into it's own repo and alllw for others to be able to use it realistically, even if it is just a quote generator.
 - Working on making a simple, viable onyx server to use with existing projects
 - Moved Fractal and BMI-CLI to their own main repos

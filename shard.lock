@@ -8,6 +8,10 @@ shards:
     github: vladfaust/callbacks.cr
     version: 0.2.0
 
+  db:
+    github: crystal-lang/crystal-db
+    version: 0.7.0
+
   dotenv:
     github: gdotdesign/cr-dotenv
     version: 0.1.0
@@ -35,6 +39,10 @@ shards:
   radix:
     github: luislavena/radix
     version: 0.3.9
+
+  sqlite3:
+    github: crystal-lang/crystal-sqlite3
+    version: 0.14.0
 
   stumpy_core:
     github: stumpycr/stumpy_core
