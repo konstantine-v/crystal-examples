@@ -35,7 +35,6 @@ class Quotes < Admiral::Command
     else
       puts "Server returned error #{responseStatus}"
     end
-
   end
 end
 

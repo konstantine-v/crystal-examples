@@ -1,7 +1,6 @@
 require "stumpy_png"
 
 class CheckImageFoo
-  
   canvas = StumpyPNG.read("img/foo.png")
   # Set to relative path since I run from the parent directory
   r, g, b = canvas[0, 0].to_rgb8
@@ -9,7 +8,6 @@ class CheckImageFoo
   # This should output the RGB values from 0,0 in the image.
 
 end
-
 
 class DrawImgRainbow
   include StumpyPNG

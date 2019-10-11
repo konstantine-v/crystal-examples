@@ -2,7 +2,6 @@ require "http/client"
 require "json"
 
 class RandomUserDataApi
-
   # Use another API, this one is wrapped as an object, I need an array :(
   response = HTTP::Client.get "https://uinames.com/api/"
   # response = HTTP::Client.get "https://icanhazdadjoke.com/slack"
@@ -13,7 +12,6 @@ class RandomUserDataApi
   print "HTTP Status: "
   case responseStatus
   when 200..299
-    
     print responseStatus
     puts " - It works!"
 
@@ -40,7 +38,6 @@ class RandomUserDataApi
   else
     puts "Server returned error #{responseStatus}"
   end
-
 end
 
 # The data

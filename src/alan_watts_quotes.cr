@@ -19,8 +19,7 @@ class AlanWattsQuotes
     "The most strongly enforced of all known taboos is the taboo against knowing who or what you really are behind the mask of your apparently separate, independent, and isolated ego.",
     "As a human being it is just my nature to enjoy and share philosophy. I do this in the same way that some birds are eagles and some doves, some flowers lilies and some roses.",
     "A person who thinks all the time has nothing to think about except thoughts. So he loses touch with reality, and lives in a world of illusion.",
-    "You are a function of what the whole universe is doing in the same way that a wave is a function of what the whole ocean is doing."
+    "You are a function of what the whole universe is doing in the same way that a wave is a function of what the whole ocean is doing.",
   ]
-  puts quotes.sample()
+  puts quotes.sample
 end
-

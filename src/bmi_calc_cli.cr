@@ -32,9 +32,7 @@ class BmiValues < Admiral::Command
       puts "Error, not sure what happened, try again..."
       exit
     end
-
   end
 end
-
 
 BmiValues.run
