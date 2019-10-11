@@ -1,7 +1,7 @@
 class AlanWattsQuotes
   quotes = [
     "I have suggested that behind almost all myth lies the mono-plot of the game of hide-and-seek.",
-    "To have faith is to trust yourself to the water. When you swim you don't grab hold of the water, because if you do you will sink and drown. Instead you relax, and float.",
+    "To have faith is to trust yourself to the water. When you swim you dont grab hold of the water, because if you do you will sink and drown. Instead you relax, and float.",
     "I am involved in the world and must try to see that it does not blow itself to pieces.",
     "Everybody is fundamentally the ultimate reality. Not God in a politically kingly sense, but God in the sense of being the self, the deep-down basic whatever there is.",
     "There is obviously a place in life for a religious attitude for awe and astonishment at existence. That is also a basis for respect for existence.",
@@ -22,4 +22,34 @@ class AlanWattsQuotes
     "You are a function of what the whole universe is doing in the same way that a wave is a function of what the whole ocean is doing.",
   ]
   puts quotes.sample
+end
+
+class Quotes
+  DB.open "sqlite3://../lib/quotes.db" do |db|
+    # db.exec "create table contacts (name text, age integer)"
+    # db.exec "insert into contacts values (?, ?)", "John Doe", 30
+
+    args = [] of DB::Any
+    args << "Sarah"
+    args << 33
+    db.exec "insert into contacts values (?, ?)", args
+
+    puts "max age:"
+    puts db.scalar "select max(age) from contacts" # => 33
+
+    puts "contacts:"
+    db.query "select name, age from contacts order by age desc" do |rs|
+      puts "#{rs.column_name(0)} (#{rs.column_name(1)})"
+      # => name (age)
+      rs.each do
+        puts "#{rs.read(String)} (#{rs.read(Int32)})"
+        # => Sarah (33)
+        # => John Doe (30)
+      end
+    end
+  end
+
+  # Have it grab quotes by aouthor, put into an array, then use .sample()
+  # Basically, extend this with admiral to create a todo application with
+
 end
