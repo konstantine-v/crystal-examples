@@ -7,7 +7,7 @@ puts "Temperature?"
 temp = gets.to_s.to_f
 
 convF = (temp - 32) * (5/9)
-convC = temp * (5/9) + 32
+convC = temp * 5/9 + 32
 unitF = "Fahrenheit"
 unitC = "Celsius"
 
@@ -21,5 +21,3 @@ else
   puts "error"
   exit
 end
-
-
