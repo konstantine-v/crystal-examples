@@ -1,55 +1,40 @@
-/*C program to design love calculator.*/
- 
-#include <stdio.h>
-#include <string.h>
-#include <ctype.h>
- 
-//function will return sum of all digits
-int sumOfDigits(int num) {
-  int sum=0;
-  while(num>0) {
-    sum+=(num%10);
-    num/=10;
-  }
-  return sum;
-}
- 
-int main() {
-  char yName[40], pName[40];
-  int sum, sum1, i, choice;
-  float perc=0;
+require "admiral"
 
-  do {
-    printf("Enter your name: ");
-    fflush(stdin);
-    gets(yName);
+class BmiValues < Admiral::Command
+  define_flag name : String, long: name
+  define_flag units : String, default: "Imperial", long: units
+  define_flag height : Float64, default: 5.11, long: height
+  define_flag weight : Int32, default: 180, long: height
 
-    printf("Enter your partner's name: ");
-    fflush(stdin);
-    gets(pName);
+  def run
+    if (flags.name != nil)
+      puts "Hello #{flags.name}!"
+    end
+    puts "Calculating BMI..."
 
-    sum=0;
-    for(i=0;i<(strlen(yName));i++)
-    {
-      sum+=tolower(yName[i]);
-    }
+    if (flags.units != nil)
+      calc_height = flags.height * 12
+      total_BMI = (flags.weight / (calc_height * calc_height)) * 703
 
-    sum1=0;
-    for(i=0;i<(strlen(yName));i++)
-    {
-      sum1+=tolower(pName[i]);
-    }
+      if (total_BMI < 18.5)
+        bmi_string = "Underweight"
+      elsif (total_BMI < 29.9 && total_BMI > 18.5)
+        bmi_string = "Normal"
+      elsif (total_BMI < 29.9 && total_BMI > 18.5)
+        bmi_string = "Overweight"
+      elsif (total_BMI > 30)
+        bmi_string = "Obese"
+      end
 
-    perc=(sumOfDigits(sum)+sumOfDigits(sum1))+40;
-    if(perc>100) perc=100;
+      puts "Your BMI is: #{total_BMI}"
+      puts "You're considered: #{bmi_string}"
+    else
+      puts "Error, not sure what happened, try again..."
+      exit
+    end
 
-    printf("Your love percentage is: %.02f\n\n",perc);
+  end
+end
 
-    printf("Want to calculate with some one else (0 to exit, 1 to continue) ???: ");
-    scanf("%d",&choice);
 
-  }
-  while(choice!=0);
-
-  return 0;
-}
+BmiValues.run
