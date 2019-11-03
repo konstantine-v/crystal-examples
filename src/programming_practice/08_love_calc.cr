@@ -12,7 +12,7 @@ end
 ynameleng = (yname * 2)
 pnameleng = (pname * 2)
 
-loveperc = (ynameleng + pnameleng) *2
+loveperc = (ynameleng + pnameleng) * 2
 if (loveperc > 100)
   loveperc = 100
 end
