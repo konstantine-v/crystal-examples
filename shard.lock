@@ -2,15 +2,15 @@ version: 1.0
 shards:
   admiral:
     github: jwaldrip/admiral.cr
-    version: 1.8.0
+    version: 1.9.0
 
   callbacks:
     github: vladfaust/callbacks.cr
     version: 0.2.0
 
-  db:
-    github: crystal-lang/crystal-db
-    version: 0.7.0
+  crystagiri:
+    github: madeindjs/crystagiri
+    version: 0.3.5
 
   dotenv:
     github: gdotdesign/cr-dotenv
@@ -26,7 +26,7 @@ shards:
 
   kilt:
     github: jeromegn/kilt
-    version: 0.4.0
+    version: 0.6.0
 
   onyx:
     github: onyxframework/onyx
@@ -39,10 +39,6 @@ shards:
   radix:
     github: luislavena/radix
     version: 0.3.9
-
-  sqlite3:
-    github: crystal-lang/crystal-sqlite3
-    version: 0.14.0
 
   stumpy_core:
     github: stumpycr/stumpy_core
