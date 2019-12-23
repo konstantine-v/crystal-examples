@@ -8,21 +8,12 @@ targets:
     main: src/testing.cr
 
 dependencies:
-  onyx:
-    github: onyxframework/onyx
-    version: ~> 0.6.0
-  onyx-http:
-    github: onyxframework/http
-    version: ~> 0.9.0
-  stumpy_png:
-    github: stumpycr/stumpy_png
-    version: "~> 4.5"
   admiral:
     github: jwaldrip/admiral.cr
   crystagiri:
     github: madeindjs/crystagiri
-  # sqlite3:
-  #   github: crystal-lang/crystal-sqlite3
+  halite:
+    github: icyleaf/halite
 
 crystal: 0.30.1
 license: MIT
