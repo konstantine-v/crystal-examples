@@ -18,14 +18,18 @@ module NewReads::Generate
   def to_hex(int)
     int < 16 ? '0' + int.to_s(16) : int.to_s(16)
   end
-  
+
+  def rand_num(n)
+    Random.new.rand(1..9).to_s.each(n)
+  end
   LANG = "9780"
   def self.english
     rand_byte = Random.new.rand(999).to_s(3)
     rand_byte_one = Random.new.rand(1..9).to_s
     if (LANG === "9780")
-      digit_codes = Random.new.rand(5..6)
+      digit_codes = Random.new.rand(1..6)
       if digit_codes === 6
+        rand_byte = Random.new.rand(9999999).to_s 
         reg_element = rand_byte + rand_byte + rand_byte + rand_byte + rand_byte + rand_byte + rand_byte
         reg_group = Random.new.rand(1).to_s + rand_byte
         reg_group = reg_group + reg_element
