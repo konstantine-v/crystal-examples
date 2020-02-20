@@ -1,6 +1,4 @@
-
 module NewReads::Request
-
   def self.check
     # Check to see if ISBN is valid or doesn't contain illegal characters
   end
@@ -26,6 +24,4 @@ module NewReads::Request
     #   ISBN = LANG.sample() + RAND_ISBN.rand(999999999).to_s
 
   end
-  
-
 end

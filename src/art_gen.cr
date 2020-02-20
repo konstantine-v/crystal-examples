@@ -7,12 +7,12 @@ include StumpyPNG
 module ArtGenerator
   def self.new(x, y)
     canvas = Canvas.new(x, y) { |x, y| RGBA.from_rgb_n(x, y, 255, 8) }
-    
+
     ran_am = Random.new.rand(1..10)
     colors = Array.new(ran_am) {
       RGBA.from_rgb_n(
-        Random.new.rand(1..y), 
-        Random.new.rand(1..y), 
+        Random.new.rand(1..y),
+        Random.new.rand(1..y),
         255, 8
       )
     }

@@ -16,5 +16,5 @@ module NewReads
   # If true do the request
   # NewReads::Request.
   # if not dont, break for whatever reason
-    
+
 end

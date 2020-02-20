@@ -1,10 +1,11 @@
 class Lottery
   @numbers : Array(Int32)
+
   def initialize
     @numbers = (1..49).to_a
   end
 
-  def pick(n=1)
+  def pick(n = 1)
     @numbers.sample(n).sort
   end
 

@@ -14,7 +14,6 @@ require "json"
 # format ISBN with "-" notation and then regex to query
 
 module NewReads::Generate
-
   def to_hex(int)
     int < 16 ? '0' + int.to_s(16) : int.to_s(16)
   end
@@ -22,43 +21,40 @@ module NewReads::Generate
   def rand_num(n)
     Random.new.rand(1..9).to_s.each(n)
   end
+
   LANG = "9780"
+
   def self.english
     rand_byte = Random.new.rand(999).to_s(3)
     rand_byte_one = Random.new.rand(1..9).to_s
     if (LANG === "9780")
       digit_codes = Random.new.rand(1..6)
       if digit_codes === 6
-        rand_byte = Random.new.rand(9999999).to_s 
+        rand_byte = Random.new.rand(9999999).to_s
         reg_element = rand_byte + rand_byte + rand_byte + rand_byte + rand_byte + rand_byte + rand_byte
         reg_group = Random.new.rand(1).to_s + rand_byte
         reg_group = reg_group + reg_element
-
       elsif digit_codes === 5
         reg_element = rand_byte + rand_byte + rand_byte + rand_byte + rand_byte + rand_byte
-        reg_group_rand = [200..227, 229..368, 370..638, 640..647, 649..654, 656..699].sample()
+        reg_group_rand = [200..227, 229..368, 370..638, 640..647, 649..654, 656..699].sample
         reg_group = Random.new.rand(reg_group_rand).to_s
         reg_group = reg_group + reg_element
-
       elsif digit_codes === 4
         reg_element = rand_byte + rand_byte + rand_byte + rand_byte + rand_byte
-        reg_group_rand = [2280..2289, 3690..3699, 6390..6398, 6550..6559, 7000..8499].sample()
+        reg_group_rand = [2280..2289, 3690..3699, 6390..6398, 6550..6559, 7000..8499].sample
         reg_group = Random.new.rand(reg_group_rand).to_s
         reg_group = reg_group + reg_element
-
       elsif digit_codes === 3
         reg_element = rand_byte + rand_byte + rand_byte + rand_byte
         reg_group = Random.new.rand(85000..89999).to_s
         reg_group = reg_group + reg_element
-
       elsif digit_codes === 2
         reg_element = rand_byte + rand_byte + rand_byte
         reg_group = Random.new.rand(900000..949999).to_s
         reg_group = reg_group + reg_element
-
       elsif digit_codes === 1
         reg_element = rand_byte + rand_byte
-        reg_group_rand = [6399000..6399999, 6480000..6489999, 9500000..9999999].sample()
+        reg_group_rand = [6399000..6399999, 6480000..6489999, 9500000..9999999].sample
         reg_group = Random.new.rand(reg_group_rand).to_s
         reg_group = reg_group + reg_element
       end
@@ -103,7 +99,5 @@ module NewReads::Generate
 
     # puts "New ISBN: " + LANG + reg_group.to_s
     return LANG + reg_group.to_s
-
   end
-
 end

@@ -18,11 +18,10 @@ class ImgDownload < Admiral::Command
     default: "site.html",
     description: "The name of the downloaded directory.",
     long: file
-  
-  def run
 
+  def run
     # HTTP::Client.get("#{flags.url}") do |response|
-      # File.write("example.com.html", response.body_io)
+    # File.write("example.com.html", response.body_io)
     # end
 
     # cmd1 = %{curl '#{flags.url}' | jq -r '.posts[] | "https://i.4cdn.org/g/"; + (.tim|tostring) + .ext' | grep -v null$ | xargs wget}
@@ -30,7 +29,7 @@ class ImgDownload < Admiral::Command
 
     # TODO: Check http response not the url
     if (flags.url != nil)
-    # Todo: Stop using shell commands and start using Crystal lang things      
+      # Todo: Stop using shell commands and start using Crystal lang things
       setup1 = %{echo 'Creating directory for your images called #{flags.dirname}...' && mkdir #{flags.dirname} && echo 'Moving into new directory...' && cd #{flags.dirname}}
       cmd1 = %{curl '#{flags.url}' | jq -r '.posts[] | "https://i.4cdn.org/g/"; + (.tim|tostring) + .ext' | grep -v null$ | xargs wget}
       Process.run(setup1)
