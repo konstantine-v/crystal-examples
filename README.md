@@ -2,11 +2,14 @@
 
 # Info
 
-This is just a repo for me to practice Crystal Lang. I've been practicing a bit of Ruby and decided to take a look into crystal and see performance as well as compatibility for a future project.
+This is just a repo for me to practice Crystal Lang. I've really liked working
+with it on some personal projects and plan to keep using it and help create
+tools and libraries with it.
 
-I also want to see how possible it is to take exsisting code (and subsequently projects) in Ruby and make it work in Crystal while being a cross-platform binary for MacOS and Linux. This would help me with some of my work in regards to some projects I'm currently on.
-
-If you dont want to clone the repo, you can easily play around with my `src/` directory by copy and pasting in https://play.crystal-lang.org/#/cr
+If you dont want to clone the repo, you can easily play around with my `src/`
+directory by copy and pasting in https://play.crystal-lang.cr/#/org. Please note
+though that some of the projects may require shards, check to see if they
+require anything before running.
 
 ## Installation/Development
 
@@ -16,10 +19,8 @@ Make changes to modules/classes in the `src/testing` directory.
 
 ## Usage
 
-Run the crystal files by using `crystal src/testing/<your-file>.cr`, read crystal docs in regards to compiling files as binaries and running them.
+Run the crystal files by using `crystal run src/<your-file>.cr`
 
-## Notes/Todos
-
-- Included quote generator using SQLite3 db. After I finish the initial design, I'll break out into it's own repo and alllw for others to be able to use it realistically, even if it is just a quote generator.
-- Working on making a simple, viable onyx server to use with existing projects
-- Moved Fractal and BMI-CLI to their own main repos
+You can also compile the file you want by using `crystal build src/<your-file>
+--release`. This will create a binary in the parent directory so you can run it
+just like any other binary.
