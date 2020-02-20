@@ -4,11 +4,12 @@ class PasswordGenerator
   # nums      = (0..99).to_a.sample()
   # spaces    = ' '
 
-  # how many?
-  times = 10
+  # Hown long to generate password?
+  print "How characters long do you want you password? "
+  chars = gets.to_s.to_i32
 
-  o = [('a'..'z'), ('A'..'Z')].map(&.to_a).flatten
-  string = (0...50).map { o[rand(o.length)] }.join
+  o = [('a'..'z'), ('A'..'Z'), (0..9)].map(&.to_a).flatten
+  string = (0..chars).map { o[rand(o.size)] }.join
   puts string
 
   # while (times > 0)
