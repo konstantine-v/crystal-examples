@@ -12,3 +12,19 @@ shards:
     github: icyleaf/halite
     version: 0.10.4
 
+  pcf-parser:
+    github: l3kn/pcf-parser
+    version: 0.1.1
+
+  stumpy_core:
+    github: stumpycr/stumpy_core
+    version: 1.9.1
+
+  stumpy_png:
+    github: stumpycr/stumpy_png
+    version: 4.5.2
+
+  stumpy_utils:
+    github: stumpycr/stumpy_utils
+    version: 0.5.1
+

@@ -14,6 +14,11 @@ dependencies:
     github: madeindjs/crystagiri
   halite:
     github: icyleaf/halite
+  stumpy_png:
+    github: stumpycr/stumpy_png
+    version: "~> 4.5"
+  stumpy_utils:
+    github: stumpycr/stumpy_utils
 
 crystal: 0.30.1
 license: MIT

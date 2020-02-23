@@ -6,7 +6,11 @@ class PasswordGenerator
 
   # Hown long to generate password?
   print "How characters long do you want you password? "
+  chars = 10
   chars = gets.to_s.to_i32
+  if (chars == nil || "")
+    chars = 10
+  end
 
   o = [('a'..'z'), ('A'..'Z'), (0..9)].map(&.to_a).flatten
   string = (0..chars).map { o[rand(o.size)] }.join
